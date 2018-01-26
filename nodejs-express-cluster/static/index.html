@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PI</title>
+</head>
+<body>
+	<button type="button">GET</button>
+	<button type="button">KILL</button>
+	<button type="button">RESTART</button>
+	<script>
+		var makeReauest = function () {
+			var xhr = new XMLHttpRequest();
+			var t = Date.now();
+			xhr.open('GET', 'http://localhost:4001/calc');
+			xhr.onload = function () {
+				var time = document.createElement('div');
+				time.textContent = xhr.responseText + '\t' + (Date.now() - t);
+				document.body.appendChild(time);
+			}
+			xhr.send();
+		}
+		var killServer = function () {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://localhost:4001/kill');
+			xhr.send();
+		}
+		var restartServer = function () {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://localhost:4001/rebuild');
+			xhr.send();
+		}
+
+		var buttons = document.querySelectorAll('button');
+		buttons[0].onclick = function () {
+			for (var i = 0; i < 7; ++i) {
+				// setTimeout(makeReauest, i * 100);
+				makeReauest();
+			}
+		}
+		buttons[1].onclick = function () {
+			killServer();
+		}
+		buttons[2].onclick = function () {
+			restartServer();
+		}
+	</script>
+</body>
+</html>
