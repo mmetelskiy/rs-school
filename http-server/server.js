@@ -1,10 +1,12 @@
+/* eslint-disable */
+
 const http = require('http');
 const fs = require('fs');
 const mime = require('mime');
 const path = require('path');
 // const { URL } = require('url');
 
-const ROOT = path.join(__dirname, '/public');
+const ROOT = path.join(__dirname, '/public'); // ../../fdsa
 
 const endWithCode = function (res, code, text) {
 	res.statusCode = code;
@@ -19,14 +21,12 @@ http.createServer((req, res) => {
 			fileName = '/index.html';
 		}
 
-		// const fullPath = path.normalize(path.join(ROOT, fileName));
-
-		// if (fullPath.indexOf(ROOT) !== 0) {
-		// 	endWithCode(res, 403);
-		// 	return;
-		// }
-
 		const fullPath = path.join(ROOT, fileName);
+
+		if (fullPath.indexOf(ROOT) !== 0) {
+			endWithCode(res, 403);
+			return;
+		}
 
 		fs.stat(fullPath, (err, stats) => {
 			if (err || !stats.isFile()) {
@@ -52,12 +52,12 @@ http.createServer((req, res) => {
 			});
 		});
 	}
-}).listen(8080, () => {
+}).listen(8081, () => {
 	console.log('server started');
 });
 
 setTimeout(() => {
-	http.request('http://localhost:8080/../private_rsa_key', (res) => {
+	http.request('http://localhost:8081/../private_rsa_key', (res) => {
 		console.log(res.statusCode);
 		res.setEncoding('utf8');
 
