@@ -35,5 +35,38 @@ exports.getStudents = function (req, res) {
 };
 
 exports.addMentor = function (req, res) {
+  const mentor = req.body;
+  let error;
 
+  if (!mentor.name || !mentor.name.length) {
+    error = new Error('No name specified.');
+    error.code = 400;
+  } else if (!mentor.surname || !mentor.surname.length) {
+    error = new Error('No surname specified.');
+    error.code = 400;
+  } else if (!mentor.github_login || !mentor.github_login.length) {
+    error = new Error('No github_login specified.');
+    error.code = 400;
+  }
+
+  if (error) {
+    processError(error, res);
+    return;
+  }
+
+  const mentorToPutToDb = {
+    name: mentor.name,
+    surname: mentor.surname,
+    github_login: mentor.github_login
+  };
+
+  dataprovider.addMentor(mentorToPutToDb, error => {
+    if (error) {
+      processError(error, res);
+    } else {
+      res
+        .status(201)
+        .end();
+    }
+  });
 };

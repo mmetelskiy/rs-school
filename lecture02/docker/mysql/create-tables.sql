@@ -34,7 +34,7 @@ INSERT INTO `rs-db`.`relations` (`mentor_id`, `student_id`) VALUES ('1', '3');
 INSERT INTO `rs-db`.`relations` (`mentor_id`, `student_id`) VALUES ('1', '4');
 
 
-use `rs-db`;
+-- use `rs-db`;
 
 select s.name, s.surname, s.github_login, m.name as mentor_name, m.surname as mentor_surname
 from users s, users m, relations
