@@ -17,7 +17,7 @@ exports.getStudents = function (callback) {
     from users s
     left outer join (relations join users m on relations.mentor_id = m.id)
       on s.id = relations.student_id
-      where s.role = 'student';`;
+      where s.role = 'student'`;
 
   databaserepository.query(query, null, (error, result) => {
     callback(error, result);
@@ -28,4 +28,6 @@ exports.getMentors = function (callback) {
 
 };
 
+exports.addMentor = function () {
 
+};

@@ -33,3 +33,7 @@ exports.getStudents = function (req, res) {
     });
   });
 };
+
+exports.addMentor = function (req, res) {
+
+};
