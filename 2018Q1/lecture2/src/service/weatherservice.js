@@ -64,6 +64,17 @@ const weatherRequest = request.defaults({
   }
 */
 
+// /weather?lat=..&lon=?
 exports.getWeatherByCoordinates = function (latitude, longtitude, callback) {
 
 };
+
+// /weather?q=...
+exports.getWeatherByCityName = function (cityName, callback) {
+
+};
+
+request('http://localhost:3008', (error, response, body) => {
+  console.log(error);
+  console.log(body);
+})
