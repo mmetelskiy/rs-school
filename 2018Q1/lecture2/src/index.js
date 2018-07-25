@@ -7,3 +7,5 @@ const express = require('express');
 const serverConfig = require('./config').server;
 
 // check port
+// bind routes
+// listen
