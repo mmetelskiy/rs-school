@@ -1,0 +1,11 @@
+{
+  "server": {
+    "port": 8989
+  },
+  "service": {
+    "weather": {
+      "baseUrl": "https://api.openweathermap.org/data/2.5",
+      "token": "ac3db0e7477f289a947c2749d18f18b7"
+    }
+  }
+}
